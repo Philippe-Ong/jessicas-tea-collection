@@ -1,0 +1,469 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PillButton from '../components/PillButton.astro';
+---
+
+<BaseLayout
+  title="Infokasten TCM – Jessica's Tea Collection"
+  description="Wissen über Traditionelle Chinesische Medizin, Tee als Lebenspflege und die Wirkung von Tee in der TCM."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Infokasten' },
+      ]}
+    />
+
+    <h1>Infokasten TCM</h1>
+
+    <!-- Sommaire en pills -->
+    <nav class="pill-sommaire" aria-label="Sections-Übersicht">
+      <PillButton href="#section-1" label="TCM einfach erklärt" variant="ghost" />
+      <PillButton href="#section-2" label="Tee als Lebenspflege" variant="ghost" />
+      <PillButton href="#section-3" label="Tee Wirkung in der TCM" variant="ghost" />
+      <PillButton href="#section-4" label="Einzeltee oder Mischung" variant="ghost" />
+    </nav>
+
+    <!-- Section 1 -->
+    <section class="info-section" id="section-1">
+      <h2>Traditionelle Chinesische Medizin (TCM) – einfach erklärt</h2>
+
+      <ul class="tcm-questions">
+        <li>Was sind Leitbahnen (Meridiane)?</li>
+        <li>Was ist Qi?</li>
+        <li>Was bedeutet Yin &amp; Yang?</li>
+        <li>Was heisst „Herz, Milz, Leber" in der TCM-Sprache?</li>
+      </ul>
+
+      <p>In der Chinesischen Medizin geht es um die Bewegung von Qi und Blut in den Leitbahnen (Meridianen).</p>
+
+      <h3>Was bedeuten Herz, Milz und Leber in der TCM?</h3>
+      <p>Wenn wir in der Traditionellen Chinesischen Medizin von Herz, Milz oder Leber sprechen, meinen wir nicht nur das Organ im westlichen Sinn. In der TCM steht jedes dieser Organe für ein ganzes Funktionssystem im Körper. Dazu gehören auch die zugehörigen Leitbahnen (Meridiane).</p>
+      <p>Die Leitbahnen bilden ein Netzwerk im Körper. Dieses System übernimmt verschiedene Aufgaben und verbindet unterschiedliche Bereiche des Körpers miteinander. Jede Leitbahn steht mit bestimmten körperlichen Funktionen, Emotionen und geistigen Prozessen in Verbindung.</p>
+      <p>Anhand der Beschreibung von Beschwerden und Symptomen kann man erkennen, welches Meridian-System aus dem Gleichgewicht geraten ist oder wo eine Blockade im Energiefluss bestehen könnte. Deshalb stellt man in der Traditionellen Chinesischen Medizin in der Therapie immer viele Fragen zu den Beschwerden, um die Ursache besser zu verstehen.</p>
+
+      <p>Leitbahnen (Meridiane) sind wie feine Energiebahnen im Körper. In ihnen bewegt sich Qi (Lebensenergie). Qi versorgt den Körper und unterstützt die Zirkulation von Blut.</p>
+      <p>Wenn eine Leitbahn frei und durchgängig ist, kann die Energie ungehindert fliessen – und die zugehörigen Funktionen arbeiten harmonisch. Wenn der Fluss blockiert oder geschwächt ist, können Beschwerden entstehen.</p>
+
+      <p>Yin und Yang beschreiben zwei grundlegende Kräfte im Körper:</p>
+      <p>Yin steht für Ruhe, Kühle, Substanz, Blut, Nahrung und Nacht.<br />Yang steht für Wärme, Aktivität, Bewegung, Energie und Tag.<br />Gesundheit bedeutet, dass Yin und Yang im Gleichgewicht sind.</p>
+      <p>Bei Schlafstörungen zum Beispiel ist oft das Yin zu schwach oder das Yang zu unruhig – der Geist kann dann nicht richtig zur Ruhe kommen.</p>
+      <p>Wenn wir also von „Milz stärken", „Herz beruhigen" oder „Leber harmonisieren" sprechen, meinen wir, dass wir die Energie in diesen Leitbahnen ausgleichen, damit ihre Funktionen wieder ruhig, kraftvoll und ohne Blockaden arbeiten können.</p>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="info-section" id="section-2">
+      <h2>Tee als tägliche Lebenspflege – besonders ab der Lebensmitte</h2>
+
+      <p>In der Traditionellen Chinesischen Medizin gilt: Mit zunehmendem Alter nimmt die Substanz von Qi, Blut, Yin und Yang allmählich ab. Ab etwa der Lebensmitte reicht es oft nicht mehr, den Körper nur mit Wasser zu versorgen. Der Organismus braucht zusätzlich wärmende, nährende und regulierende Impulse.</p>
+      <p>Aus TCM-Sicht können Tees und Kräuteraufgüsse den Körper sanft unterstützen – sie nähren, bewegen, befeuchten oder wärmen und helfen, altersbedingte Mangelzustände auszugleichen.</p>
+      <p>Gerade ab etwa 50 Jahren kann es deshalb wohltuend sein, regelmäßig nicht nur Wasser, sondern auch ausgewählte TCM-Tees zu trinken, um:</p>
+      <ul class="lebenspflege-list">
+        <li>das Qi zu stärken</li>
+        <li>Blut und Yin zu nähren</li>
+        <li>die Verdauung zu unterstützen</li>
+        <li>Kälte oder innere Hitze auszugleichen</li>
+        <li>und die Organe sanft zu pflegen</li>
+      </ul>
+
+      <h3>Einzeltee oder Kombination?</h3>
+      <p>Bei einfachen, klaren Bedürfnissen kann ein einzelner Tee ausreichend sein.</p>
+      <p>Bei mehreren Beschwerden oder bei tieferliegenden Ungleichgewichten wirken TCM-Kombinationen oft harmonischer und umfassender, da sich die einzelnen Kräuter in ihrer Wirkung ergänzen und gegenseitig ausgleichen.</p>
+      <p>So wird jede Tasse Tee zu einer Form von täglicher, sanfter Prävention und Lebenspflege – besonders in der zweiten Lebenshälfte.</p>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="info-section" id="section-3">
+      <h2>Wie wirkt Tee in der Traditionellen Chinesischen Medizin?</h2>
+
+      <p>In der Traditionellen Chinesischen Medizin hat auch Tee eine energetische Wirkung auf den Körper.</p>
+      <p>In der TCM wird Tee deshalb nicht nur nach Geschmack oder nach seinen Inhaltsstoffen ausgewählt, sondern vor allem nach seiner energetischen Wirkung auf den Körper. Entscheidend ist, ob ein Tee den Körper wärmt, kühlt oder ausgleicht.</p>
+      <p>Je nach Pflanze kann Tee Qi bewegen, den Körper wärmen oder kühlen, Blut und Yin nähren oder den Geist beruhigen. Viele Tees wirken zudem auf bestimmte Organe und Leitbahnen.</p>
+      <p>Jeder Tee hat eine bestimmte thermische Eigenschaft und wirkt auf bestimmte Organe und Funktionen des Körpers.</p>
+      <p>So können Sie einen Tee wählen, der zu Ihrem aktuellen Zustand passt.</p>
+
+      <h3>Wie wähle ich den richtigen Tee?</h3>
+      <p>Fragen Sie sich einfach:</p>
+      <ul class="fragen-list">
+        <li>Fühle ich mich eher kalt oder warm?</li>
+        <li>Bin ich müde oder unruhig?</li>
+        <li>Brauche ich Energie, Ruhe oder Verdauungshilfe?</li>
+      </ul>
+      <p>Dann wählen Sie den Tee, der zu Ihrem Zustand passt.</p>
+      <p>So unterstützen Sie Ihren Körper sanft und natürlich im Alltag.</p>
+
+      <!-- Tea energy cards with styled icon badges -->
+      <div class="energy-cards">
+        <div class="energy-card">
+          <div class="energy-badge energy-badge--waermend" aria-label="Wärmende Tees">
+            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" aria-hidden="true">
+              <path d="M7 0C7 0 1 6 1 10.5C1 13.5 3.5 16 7 16C10.5 16 13 13.5 13 10.5C13 6 7 0 7 0Z" fill="white"/>
+              <path d="M5 12C5 12 5.5 10 7 10C8.5 10 9 12 9 12" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span>Wärmend</span>
+          </div>
+          <div class="energy-content">
+            <p><strong>Wärmende Tees</strong> — stärken das Yang, bringen Wärme und Energie. Traditionell bei: kalten Händen/Füßen, innerem Kältegefühl, Müdigkeit/Energiemangel, empfindlicher Verdauung. Beliebt im Herbst/Winter und bei Menschen, die schnell frieren.</p>
+          </div>
+        </div>
+
+        <div class="energy-card">
+          <div class="energy-badge energy-badge--kuehlend" aria-label="Kühlende Tees">
+            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" aria-hidden="true">
+              <path d="M7 0L7 10M7 10L3 7M7 10L11 7M7 10L7 16M7 16L3 13M7 16L11 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Kühlend</span>
+          </div>
+          <div class="energy-content">
+            <p><strong>Kühlende Tees</strong> — wirken ausgleichend bei innerer Hitze, erfrischen. Bei: Hitzegefühl, innerer Unruhe, trockenen/gereizten Augen, Kopfdruck. Beliebt im Frühling/Sommer und bei warmem Wetter.</p>
+          </div>
+        </div>
+
+        <div class="energy-card">
+          <div class="energy-badge energy-badge--verdauung" aria-label="Verdauung">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 1C9 1 5 4 5 8C5 11 7 14 9 17C11 14 13 11 13 8C13 4 9 1 9 1Z" stroke="white" stroke-width="1.5"/>
+              <path d="M7 8L9 6L11 8M9 6V12" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Verdauung</span>
+          </div>
+          <div class="energy-content">
+            <p><strong>Tees zur Unterstützung der Verdauung</strong> — harmonisieren Verdauung und Magen-Qi. Bei: Völlegefühl, träger Verdauung, Blähungen, schwerem Gefühl im Bauch. Beliebt nach reichhaltigen Mahlzeiten.</p>
+          </div>
+        </div>
+
+        <div class="energy-card">
+          <div class="energy-badge energy-badge--entspannung" aria-label="Entspannung">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 2C9 2 2 6 2 11C2 14 4 16 9 16C14 16 16 14 16 11C16 6 9 2 9 2Z" stroke="white" stroke-width="1.5"/>
+              <path d="M9 8V12M9 12L7 10.5M9 12L11 10.5" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Entspannung</span>
+          </div>
+          <div class="energy-content">
+            <p><strong>Tees zur Entspannung</strong> — beruhigen den Geist, fördern innere Balance. Bei: innerer Unruhe, Anspannung, emotionalem Stress. Beliebt am Abend.</p>
+          </div>
+        </div>
+
+        <div class="energy-card">
+          <div class="energy-badge energy-badge--blut" aria-label="Blut und Energie">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 3C9 3 3 8 3 12C3 15 5 17 9 17C13 17 15 15 15 12C15 8 9 3 9 3Z" stroke="white" stroke-width="1.5"/>
+              <path d="M9 9V13M9 13L7 11.5M9 13L11 11.5" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Blut &amp; Energie</span>
+          </div>
+          <div class="energy-content">
+            <p><strong>Tees zur Unterstützung von Blut und Energie</strong> — nähren, unterstützen Vitalität. Bei: Müdigkeit/Erschöpfung, blassem Erscheinungsbild. Beliebt bei erhöhter Belastung.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="hinweis-text">Welche Tees traditionell zu Ihrem aktuellen Zustand passen können, finden Sie in der Übersicht «<a href="/finde-deinen-tee">Finde deinen Tee</a>».</p>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="info-section" id="section-4">
+      <h2>Einzeltee oder Mischung – was ist der Unterschied?</h2>
+
+      <p>In der Traditionellen Chinesischen Medizin können sowohl einzelne Kräuter und Blüten als auch Kombinationen verwendet werden. Beide haben ihren eigenen Platz und ihre eigene Aufgabe.</p>
+
+      <h3>Einzeltees (Einzelkräuter / Einzelblüten)</h3>
+      <p>Einzeltees wirken klar und gezielt. Sie eignen sich besonders:</p>
+      <ul class="eigenschaften-list">
+        <li>bei leichten, klaren Beschwerden</li>
+        <li>wenn man seinen Körper gut kennt</li>
+        <li>für den täglichen Genuss</li>
+        <li>zur sanften Unterstützung eines bestimmten Organs oder einer bestimmten Wirkung</li>
+      </ul>
+      <p class="example">(z. B. Chrysantheme für die Augen, Rose für Leber-Qi, Ingwer bei Kälte)</p>
+      <p class="metaphor">Ein Einzeltee ist wie eine einzelne Stimme – ruhig, klar und pur.</p>
+
+      <h3>TCM-Kombinationen (Mischungen)</h3>
+      <p>Mischungen sind nach den Prinzipien der chinesischen Rezeptur aufgebaut. Sie wirken harmonisierend und ganzheitlicher. Sie eignen sich besonders:</p>
+      <ul class="eigenschaften-list">
+        <li>bei mehreren gleichzeitigen Symptomen</li>
+        <li>bei komplexeren Mustern (z. B. Stress + Schlaf + Verdauung)</li>
+        <li>wenn man nicht genau weiß, wo das Ungleichgewicht liegt</li>
+        <li>für Menschen, die eine ausgewogene, sanfte Gesamtwirkung wünschen</li>
+      </ul>
+      <p class="metaphor">Eine Mischung ist wie ein Orchester – die Kräuter unterstützen sich gegenseitig und verstärken die Wirkung.</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+    max-width: 860px;
+    margin: 0 auto;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+    color: var(--color-text);
+  }
+
+  /* Sommaire pills */
+  .pill-sommaire {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-7);
+  }
+
+  /* Info sections */
+  .info-section {
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--color-border);
+  }
+
+  .info-section h2 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+  }
+
+  .info-section h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  .info-section p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  /* TCM questions list (Section 1) */
+  .tcm-questions {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-4);
+    background: var(--color-sand);
+    border-radius: var(--radius-card);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .tcm-questions li {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    padding: var(--space-1) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .tcm-questions li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-sage);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  /* Lebenspflege list (Section 2) */
+  .lebenspflege-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .lebenspflege-list li {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    padding: var(--space-1) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .lebenspflege-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-sage);
+    font-weight: bold;
+  }
+
+  /* Fragen list (Section 3) */
+  .fragen-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .fragen-list li {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    padding: var(--space-1) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .fragen-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-ochre);
+    font-weight: bold;
+  }
+
+  /* Energy cards (Section 3) */
+  .energy-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: var(--space-5) 0;
+  }
+
+  .energy-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    background: var(--color-cream);
+    border-radius: var(--radius-card);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+  }
+
+  .energy-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    color: white;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .energy-badge--waermend {
+    background: #B5764E;
+  }
+
+  .energy-badge--kuehlend {
+    background: #6E8CA0;
+  }
+
+  .energy-badge--verdauung {
+    background: #8B9E6B;
+  }
+
+  .energy-badge--entspannung {
+    background: #C4955A;
+  }
+
+  .energy-badge--blut {
+    background: #B5764E;
+  }
+
+  .energy-content p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  .hinweis-text {
+    font-style: italic;
+    color: var(--color-text-light);
+  }
+
+  .hinweis-text a {
+    color: var(--color-ochre);
+    text-decoration: underline;
+  }
+
+  .hinweis-text a:hover {
+    color: var(--color-terracotta);
+  }
+
+  /* Eigenschaften lists (Section 4) */
+  .eigenschaften-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-3);
+  }
+
+  .eigenschaften-list li {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    padding: var(--space-1) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .eigenschaften-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-sage);
+    font-weight: bold;
+  }
+
+  .example {
+    font-style: italic;
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+  }
+
+  .metaphor {
+    font-style: italic;
+    color: var(--color-sage);
+    font-weight: 500;
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .info-section {
+      padding: var(--space-4);
+    }
+
+    .info-section h2 {
+      font-size: 1.3rem;
+    }
+
+    .energy-card {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .pill-sommaire {
+      flex-direction: column;
+    }
+  }
+</style>

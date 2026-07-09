@@ -1,0 +1,282 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CartDrawer from '../components/CartDrawer.astro';
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: string;
+}
+
+const { title, description, image, type = 'website' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <SEO title={title} description={description} image={image} type={type} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <CartDrawer />
+    <script is:inline>
+      (function () {
+        'use strict';
+
+        const CART_KEY = 'jtc_cart';
+        const FREE_SHIPPING_FROM = 80;
+        const FLAT_RATE = 9;
+        const DISCOUNT_FROM = 100;
+        const DISCOUNT_PERCENT = 5;
+
+        // ── Cart state ──
+        function getCart() {
+          try {
+            const raw = localStorage.getItem(CART_KEY);
+            return raw ? JSON.parse(raw) : [];
+          } catch { return []; }
+        }
+
+        function saveCart(items) {
+          localStorage.setItem(CART_KEY, JSON.stringify(items));
+        }
+
+        function addToCart(slug, nameDe, nameCn, price, quantity) {
+          const cart = getCart();
+          const existing = cart.find(function (item) { return item.slug === slug; });
+          if (existing) {
+            existing.quantity += quantity;
+          } else {
+            cart.push({ slug: slug, nameDe: nameDe, nameCn: nameCn, price: price, quantity: quantity });
+          }
+          saveCart(cart);
+          renderAll();
+        }
+
+        function removeFromCart(slug) {
+          var cart = getCart().filter(function (item) { return item.slug !== slug; });
+          saveCart(cart);
+          renderAll();
+        }
+
+        function updateQuantity(slug, quantity) {
+          if (quantity < 1) { removeFromCart(slug); return; }
+          var cart = getCart();
+          var found = false;
+          for (var i = 0; i < cart.length; i++) {
+            if (cart[i].slug === slug) {
+              cart[i].quantity = quantity;
+              found = true;
+              break;
+            }
+          }
+          if (found) { saveCart(cart); renderAll(); }
+        }
+
+        function getCartTotal(cart) {
+          var total = 0;
+          for (var i = 0; i < cart.length; i++) {
+            total += cart[i].price * cart[i].quantity;
+          }
+          return total;
+        }
+
+        function getShipping(total) {
+          return total >= FREE_SHIPPING_FROM ? 0 : FLAT_RATE;
+        }
+
+        function getDiscount(total) {
+          return total >= DISCOUNT_FROM ? total * DISCOUNT_PERCENT / 100 : 0;
+        }
+
+        function getGrandTotal(cart) {
+          var total = getCartTotal(cart);
+          var discount = getDiscount(total);
+          var shipping = getShipping(total);
+          return total - discount + shipping;
+        }
+
+        // ── Render helpers ──
+        function renderAll() {
+          updateCartCount();
+          renderCart();
+        }
+
+        function updateCartCount() {
+          var cart = getCart();
+          var count = 0;
+          for (var i = 0; i < cart.length; i++) { count += cart[i].quantity; }
+          var badge = document.getElementById('cart-count');
+          if (badge) { badge.textContent = count.toString(); }
+        }
+
+        function renderCart() {
+          var container = document.getElementById('cart-items');
+          var progressEl = document.getElementById('cart-progress');
+          var subtotalEl = document.getElementById('cart-subtotal');
+          var shippingEl = document.getElementById('cart-shipping');
+          var discountEl = document.getElementById('cart-discount');
+          var totalEl = document.getElementById('cart-total');
+          var checkoutBtn = document.getElementById('cart-checkout-btn');
+
+          var cart = getCart();
+          var total = getCartTotal(cart);
+          var shipping = getShipping(total);
+          var discount = getDiscount(total);
+          var grandTotal = getGrandTotal(cart);
+
+          // Render items
+          if (container) {
+            if (cart.length === 0) {
+              container.innerHTML = '<p class="cart-empty">Ihr Warenkorb ist leer.</p>';
+            } else {
+              var html = '';
+              for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                var itemTotal = (item.price * item.quantity).toFixed(2);
+                html += '<div class="cart-item" data-slug="' + item.slug + '">';
+                html += '  <div class="cart-item-info">';
+                html += '    <span class="cart-item-name">' + escapeHtml(item.nameDe) + '</span>';
+                html += '    <span class="cart-item-cn">' + escapeHtml(item.nameCn) + '</span>';
+                html += '  </div>';
+                html += '  <div class="cart-item-price">CHF ' + item.price.toFixed(2) + '</div>';
+                html += '  <div class="cart-item-qty">';
+                html += '    <button class="cart-qty-btn cart-qty-minus" data-slug="' + item.slug + '">−</button>';
+                html += '    <input type="number" class="cart-qty-input" data-slug="' + item.slug + '" value="' + item.quantity + '" min="1" aria-label="Menge" />';
+                html += '    <button class="cart-qty-btn cart-qty-plus" data-slug="' + item.slug + '">+</button>';
+                html += '  </div>';
+                html += '  <div class="cart-item-total">CHF ' + itemTotal + '</div>';
+                html += '  <button class="cart-item-remove" data-slug="' + item.slug + '" aria-label="Entfernen">✕</button>';
+                html += '</div>';
+              }
+              container.innerHTML = html;
+
+              // Attach events for cart items
+              container.querySelectorAll('.cart-qty-minus').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                  var slug = btn.getAttribute('data-slug');
+                  var input = container.querySelector('.cart-qty-input[data-slug="' + slug + '"]');
+                  var val = parseInt(input.value, 10) - 1;
+                  updateQuantity(slug, val);
+                });
+              });
+              container.querySelectorAll('.cart-qty-plus').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                  var slug = btn.getAttribute('data-slug');
+                  var input = container.querySelector('.cart-qty-input[data-slug="' + slug + '"]');
+                  var val = parseInt(input.value, 10) + 1;
+                  updateQuantity(slug, val);
+                });
+              });
+              container.querySelectorAll('.cart-qty-input').forEach(function (input) {
+                input.addEventListener('change', function () {
+                  var slug = input.getAttribute('data-slug');
+                  var val = parseInt(input.value, 10);
+                  if (isNaN(val) || val < 1) val = 1;
+                  updateQuantity(slug, val);
+                });
+              });
+              container.querySelectorAll('.cart-item-remove').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                  removeFromCart(btn.getAttribute('data-slug'));
+                });
+              });
+            }
+          }
+
+          // Progress indicator
+          if (progressEl) {
+            var msg = '';
+            if (total < FREE_SHIPPING_FROM) {
+              msg = 'Nur noch CHF ' + (FREE_SHIPPING_FROM - total).toFixed(2) + ' bis zum kostenlosen Versand.';
+            } else if (total < DISCOUNT_FROM) {
+              msg = 'Kostenloser Versand aktiviert. \u2713 Nur noch CHF ' + (DISCOUNT_FROM - total).toFixed(2) + ' bis zu 5 % Rabatt.';
+            } else {
+              msg = 'Kostenloser Versand + 5 % Rabatt aktiviert. \u2713';
+            }
+            progressEl.textContent = msg;
+          }
+
+          // Summary
+          if (subtotalEl) subtotalEl.textContent = 'CHF ' + total.toFixed(2);
+          if (shippingEl) shippingEl.textContent = shipping === 0 ? 'CHF 0.00' : 'CHF ' + shipping.toFixed(2);
+          if (discountEl) discountEl.textContent = discount > 0 ? '− CHF ' + discount.toFixed(2) : 'CHF 0.00';
+          if (totalEl) totalEl.textContent = 'CHF ' + grandTotal.toFixed(2);
+          if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+        }
+
+        function escapeHtml(str) {
+          var div = document.createElement('div');
+          div.appendChild(document.createTextNode(str));
+          return div.innerHTML;
+        }
+
+        // ── Initialisation ──
+        document.addEventListener('DOMContentLoaded', function () {
+          // Cart toggle
+          var toggle = document.getElementById('cart-toggle');
+          var drawer = document.getElementById('cart-drawer');
+          var closeBtn = document.getElementById('cart-close');
+          var overlay = document.getElementById('cart-overlay');
+
+          if (toggle && drawer) {
+            toggle.addEventListener('click', function () {
+              drawer.classList.add('open');
+              renderCart();
+            });
+          }
+          if (closeBtn && drawer) {
+            closeBtn.addEventListener('click', function () { drawer.classList.remove('open'); });
+          }
+          if (overlay && drawer) {
+            overlay.addEventListener('click', function () { drawer.classList.remove('open'); });
+          }
+
+          // Add to cart buttons
+          document.addEventListener('click', function (e) {
+            var btn = e.target.closest('.add-to-cart');
+            if (!btn) return;
+            e.preventDefault();
+            var slug = btn.getAttribute('data-slug');
+            var name = btn.getAttribute('data-name');
+            var cn = btn.getAttribute('data-cn');
+            var price = parseFloat(btn.getAttribute('data-price'));
+            // Get quantity from sibling/preceding quantity selector
+            var qtyInput = btn.parentElement.querySelector('.qty-input');
+            var quantity = qtyInput ? parseInt(qtyInput.value, 10) : 1;
+            if (isNaN(quantity) || quantity < 1) quantity = 1;
+            addToCart(slug, name, cn, price, quantity);
+            // Open drawer
+            if (drawer) drawer.classList.add('open');
+          });
+
+          // Initial render
+          updateCartCount();
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    padding-top: var(--header-height);
+  }
+
+  main {
+    min-height: calc(100vh - var(--header-height) - 300px);
+  }
+</style>

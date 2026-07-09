@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EmpfindungBlock from '../../components/EmpfindungBlock.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { empfindungen } from '../../data/empfindungen';
+---
+
+<BaseLayout
+  title="Finde deinen Tee – TCM-Orientierung"
+  description="Finden Sie Ihren passenden Tee nach Ihren persönlichen Empfindungen und Bedürfnissen – basierend auf der Traditionellen Chinesischen Medizin."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Finde deinen Tee' },
+      ]}
+    />
+
+    <span class="eyebrow">TCM-Orientierung</span>
+    <h1 class="page-title">Finde deinen Tee</h1>
+
+    <!-- Hinweis block -->
+    <div class="hinweis-block">
+      <h2 class="hinweis-title">Hinweis</h2>
+      <p>Die folgenden Tee-Empfehlungen basieren auf den Prinzipien der Traditionellen Chinesischen Medizin (TCM) und dienen der Orientierung bei der Auswahl eines passenden Tees nach persönlichen Bedürfnissen und Empfindungen.</p>
+      <p>Unsere Tees sind Lebensmittel und ersetzen keine schulmedizinische Diagnose, Behandlung oder Medikamente. Bei anhaltenden oder ernsthaften gesundheitlichen Beschwerden wenden Sie sich bitte an eine qualifizierte medizinische Fachperson oder an Ihren Arzt.</p>
+      <p>Weitere allgemeine Informationen zur Traditionellen Chinesischen Medizin, zu den Eigenschaften von Tees sowie zu Einzeltees und Mischtees finden Sie im <a href="/infokasten">Infokasten</a>.</p>
+      <p>Detaillierte Beschreibungen zu den einzelnen Tees sind jeweils auf den Produktseiten im Shop aufgeführt.</p>
+      <p>Die Tees können selbstverständlich auch unabhängig von dieser Orientierungshilfe nach persönlichem Geschmack ausgewählt und genossen werden. Die Einteilung „Finde deinen Tee" dient ausschließlich als Orientierung nach den Prinzipien der Traditionellen Chinesischen Medizin (TCM).</p>
+    </div>
+
+    <!-- Empfindungen grid -->
+    <div class="empfindungen-grid">
+      {empfindungen.map((e) => <EmpfindungBlock empfindung={e} />)}
+    </div>
+
+    <!-- Footer note -->
+    <p class="footer-note">
+      Wenn Sie mehr über die Hintergründe der Traditionellen Chinesischen Medizin erfahren möchten, können Sie weitere Informationen im <a href="/infokasten">TCM-Infokasten</a> nachlesen.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-3);
+  }
+
+  /* ── Hinweis block ── */
+  .hinweis-block {
+    background: #FDF8F5;
+    border-left: 4px solid var(--color-terracotta);
+    border-radius: var(--radius-card);
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-7);
+  }
+
+  .hinweis-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .hinweis-block p {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .hinweis-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hinweis-block a {
+    color: var(--color-sage);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .hinweis-block a:hover {
+    color: var(--color-terracotta);
+  }
+
+  /* ── Empfindungen grid ── */
+  .empfindungen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-bottom: var(--space-7);
+  }
+
+  @media (max-width: 1024px) {
+    .empfindungen-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .empfindungen-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Footer note ── */
+  .footer-note {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    text-align: center;
+    padding: var(--space-5);
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+  }
+
+  .footer-note a {
+    color: var(--color-sage);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-note a:hover {
+    color: var(--color-terracotta);
+  }
+</style>

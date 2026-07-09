@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PillButton from '../../components/PillButton.astro';
+import { empfindungen } from '../../data/empfindungen';
+import { getProductBySlug } from '../../data/products';
+import type { Empfindung } from '../../data/empfindungen';
+
+export function getStaticPaths() {
+  return empfindungen.map((e) => ({
+    params: { slug: e.slug },
+    props: { empfindung: e },
+  }));
+}
+
+interface Props {
+  empfindung: Empfindung;
+}
+
+const { empfindung } = Astro.props;
+
+const matchingProducts = empfindung.passendeTees
+  .map((slug) => getProductBySlug(slug))
+  .filter((p): p is NonNullable<typeof p> => p !== undefined);
+---
+
+<BaseLayout
+  title={`${empfindung.title} – Finde deinen Tee`}
+  description={empfindung.beobachtungen.split(/[;\n]/).slice(0, 2).join('; ')}
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Finde deinen Tee', href: '/finde-deinen-tee' },
+        { label: empfindung.title },
+      ]}
+    />
+
+    <h1 class="page-title">{empfindung.title}</h1>
+
+    <!-- Mögliche Empfindungen und Beobachtungen -->
+    <section class="content-section">
+      <h2 class="section-heading">Mögliche Empfindungen und Beobachtungen</h2>
+      <p class="section-text">{empfindung.beobachtungen}</p>
+    </section>
+
+    <!-- TCM-Einordnung -->
+    <section class="content-section">
+      <h2 class="section-heading">TCM-Einordnung</h2>
+      <p class="section-text">{empfindung.tcmEinordnung}</p>
+    </section>
+
+    <!-- Passende Tees -->
+    <section class="content-section">
+      <h2 class="section-heading">Passende Tees</h2>
+      {matchingProducts.length > 0 ? (
+        <div class="products-grid">
+          {matchingProducts.map((p) => <ProductCard product={p} />)}
+        </div>
+      ) : (
+        <p class="section-text">Keine passenden Tees gefunden.</p>
+      )}
+    </section>
+
+    <!-- Back link -->
+    <div class="back-link">
+      <PillButton href="/finde-deinen-tee" label="Zurück zur Übersicht" variant="ghost" />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-7);
+  }
+
+  .content-section {
+    margin-bottom: var(--space-7);
+  }
+
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 2px solid var(--color-sand);
+  }
+
+  .section-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .back-link {
+    margin-top: var(--space-7);
+    text-align: center;
+  }
+</style>

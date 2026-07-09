@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="Rückgabe & Rückerstattung – Jessica's Tea Collection"
+  description="Informationen zu Rückgabe und Rückerstattung bei Jessica's Tea Collection."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Rückgabe' },
+      ]}
+    />
+
+    <h1>Rückgabe &amp; Rückerstattung</h1>
+
+    <p>Da es sich bei unseren Produkten um Lebensmittel handelt, sind Rückgaben grundsätzlich ausgeschlossen.</p>
+
+    <h2>Möglichkeit zur Rückgabe</h2>
+    <p>Eine Rückgabe oder Rückerstattung ist nur möglich bei:</p>
+    <ul class="return-list">
+      <li>falsch gelieferten Produkten</li>
+      <li>beschädigter Ware beim Transport</li>
+    </ul>
+    <p>Bitte kontaktieren Sie mich innerhalb von 7 Tagen nach Erhalt der Ware per E-Mail. In diesen Fällen übernehme ich selbstverständlich die Kosten und sorge für Ersatz oder Rückerstattung.</p>
+
+    <h2>Ausschluss vom Rückgaberecht</h2>
+    <p>Kein Rückgaberecht besteht bei:</p>
+    <ul class="return-list">
+      <li>geöffneten oder benutzten Produkten</li>
+      <li>Geschmackspräferenzen („gefällt nicht", „schmeckt nicht")</li>
+      <li>individuellen Unverträglichkeiten oder Allergien</li>
+      <li>persönlichen Erwartungen</li>
+    </ul>
+
+    <p class="closing-text">Vielen Dank für Ihr Verständnis und Ihr Vertrauen in Jessica's Tea Collection.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+    color: var(--color-text);
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .return-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .return-list li {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    padding: var(--space-2) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .return-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-terracotta);
+    font-weight: bold;
+  }
+
+  .closing-text {
+    margin-top: var(--space-7);
+    font-style: italic;
+    color: var(--color-text-light);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+</style>

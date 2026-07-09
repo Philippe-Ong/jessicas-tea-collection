@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryBlock from '../components/CategoryBlock.astro';
+import PillButton from '../components/PillButton.astro';
+import { categories } from '../data/categories';
+import { getProductsByCategory } from '../data/products';
+---
+
+<BaseLayout
+  title="Jessica's Tea Collection – TCM zum Trinken"
+  description="Kleine Menge in hoher Qualität – Schweizer Tees inspiriert von der Traditionellen Chinesischen Medizin."
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Willkommen bei Jessica's Tea Collection</h1>
+      <p class="hero-subtitle">TCM zum Trinken – Schweizer Tees mit chinesischer Weisheit</p>
+    </div>
+  </section>
+
+  <!-- Welcome text -->
+  <section class="welcome-section">
+    <div class="container welcome-container">
+      <p>Tee begeistert heute Menschen auf der ganzen Welt und wird von vielen neu entdeckt – als Genussmoment, tägliches Ritual und kleine Pause im Alltag.</p>
+      <p>Alle Tees in Jessica's Tea Collection können sowohl als wohlschmeckender Alltagstee als auch als sanfte Unterstützung für Ihr Wohlbefinden genossen werden.</p>
+      <p>Wenn Sie Tee einfach aus Genuss, zur Entspannung oder als Teil Ihres täglichen Rituals trinken, können Sie die verschiedenen Sorten ganz frei und abwechslungsreich wählen. Jede Teepflanze und jedes Kraut hat ihren eigenen Charakter und bringt unterschiedliche Nuancen und Eigenschaften mit sich.</p>
+      <p>Möchten Sie einen Tee gezielt über einen gewissen Zeitraum trinken, kann es sinnvoll sein, diesen regelmässig zu geniessen, damit sich seine Eigenschaften sanft entfalten können.</p>
+      <p>So kann jede Tasse Tee beides sein:</p>
+      <ul class="welcome-list">
+        <li>ein Moment des Genusses</li>
+        <li>eine kleine Unterstützung für Ihr inneres Gleichgewicht</li>
+      </ul>
+      <p>Die Auswahl meiner Tees ist auch von meinem Wissen aus der Traditionellen Chinesischen Medizin inspiriert, in der Tee seit Jahrhunderten Teil der täglichen Lebenspflege ist.</p>
+    </div>
+  </section>
+
+  <!-- Finde deinen Tee encart -->
+  <section class="finde-encart">
+    <div class="container">
+      <div class="finde-encart-inner">
+        <span class="eyebrow">TCM-Orientierung</span>
+        <h2 class="finde-title">Finde deinen Tee</h2>
+        <p class="finde-text">Nicht sicher, welcher Tee zu Ihnen passt? Unsere TCM-Orientierung hilft Ihnen, den passenden Tee nach Ihren aktuellen Empfindungen und Bedürfnissen zu finden.</p>
+        <PillButton href="/finde-deinen-tee" label="Tees entdecken" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories section -->
+  <section class="categories-section">
+    <div class="container">
+      <span class="eyebrow">Unsere Tees</span>
+      <h2 class="section-title">Tee-Kategorien</h2>
+      <div class="categories-grid">
+        {categories.map((cat) => {
+          const count = getProductsByCategory(cat.slug).length;
+          return <CategoryBlock category={cat} productCount={count} />;
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo encart -->
+  <section class="promo-encart">
+    <div class="container">
+      <div class="promo-encart-inner">
+        <p>Kostenloser Versand ab CHF 80 · 5 % Rabatt ab CHF 100</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/images/teas/gruen_tee_im_glas.png');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(44, 44, 44, 0.55) 0%,
+      rgba(44, 44, 44, 0.35) 50%,
+      rgba(44, 44, 44, 0.6) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--color-white);
+    padding: var(--space-5);
+    max-width: 700px;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--space-4);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.9;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  /* ── Welcome section ── */
+  .welcome-section {
+    background: var(--color-white);
+  }
+
+  .welcome-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .welcome-container p {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+  }
+
+  .welcome-list {
+    list-style: none;
+    margin-bottom: var(--space-5);
+  }
+
+  .welcome-list li {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .welcome-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-sage);
+  }
+
+  /* ── Finde deinen Tee encart ── */
+  .finde-encart {
+    background: var(--color-sand);
+  }
+
+  .finde-encart-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .finde-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .finde-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+
+  /* ── Categories ── */
+  .categories-section {
+    background: var(--color-cream);
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1024px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Promo encart ── */
+  .promo-encart {
+    background: var(--color-sage);
+  }
+
+  .promo-encart-inner {
+    text-align: center;
+    padding: var(--space-6) 0;
+  }
+
+  .promo-encart-inner p {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-white);
+  }
+</style>

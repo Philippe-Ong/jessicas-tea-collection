@@ -1,0 +1,141 @@
+---
+const navLinks = [
+  { label: 'Startseite', href: '/' },
+  { label: 'Finde deinen Tee', href: '/finde-deinen-tee' },
+  { label: 'Über mich', href: '/ueber-mich' },
+  { label: 'Infokasten', href: '/infokasten' },
+  { label: 'Kontakt', href: '/kontakt' },
+];
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Jessica's Tea Collection Startseite">
+      <span class="logo-mark">茶</span>
+      <span class="logo-text">Jessica's Tea Collection</span>
+    </a>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+      {navLinks.map(link => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <button class="cart-toggle" aria-label="Warenkorb öffnen" id="cart-toggle">
+      🛒 <span class="cart-count" id="cart-count">0</span>
+    </button>
+    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<style is:global>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: var(--color-cream);
+    z-index: 100;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-terracotta);
+    color: var(--color-white);
+    font-size: 1.25rem;
+    font-family: var(--font-serif);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .main-nav a {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    transition: color 0.2s;
+  }
+
+  .main-nav a:hover {
+    color: var(--color-terracotta);
+  }
+
+  .cart-toggle {
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: var(--space-2);
+    color: var(--color-text);
+  }
+
+  .cart-count {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    background: var(--color-terracotta);
+    color: var(--color-white);
+    font-size: 0.65rem;
+    font-weight: 600;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: var(--space-2);
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .main-nav {
+      display: none;
+    }
+
+    .logo-text {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+  }
+</style>

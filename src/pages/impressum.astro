@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="Impressum – Jessica's Tea Collection"
+  description="Impressum von Jessica's Tea Collection in Luzern."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Impressum' },
+      ]}
+    />
+
+    <h1>Impressum</h1>
+
+    <div class="impressum-section">
+      <h2>Jessica's Tea Collection</h2>
+      <p>Inhaberin: Jessica Huang</p>
+      <p>Rechtsform: Einzelunternehmen</p>
+    </div>
+
+    <div class="impressum-section">
+      <h2>Adresse</h2>
+      <address>
+        TCM Jessica Huang<br />
+        Löwencenter<br />
+        Zürichstrasse 7<br />
+        6004 Luzern<br />
+        5. Stock
+      </address>
+    </div>
+
+    <div class="impressum-section">
+      <h2>Kontakt</h2>
+      <p>E-Mail: <a href="mailto:info@jessicasteacollection.ch">info@jessicasteacollection.ch</a></p>
+      <p>Telefon: <a href="tel:+41787164303">078 716 43 03</a></p>
+    </div>
+
+    <div class="impressum-section">
+      <h2>UID-Nummer</h2>
+      <p>UID-Nummer (Identifikationsnummer der Unternehmung): <strong>{'{UID à préciser par Jessica}'}</strong></p>
+    </div>
+
+    <div class="impressum-section">
+      <h2>Registereintrag</h2>
+      <p>Registereintrag (Handelsregister, falls zutreffend): <strong>{'{RC à préciser par Jessica, oder « nicht eingetragen »}'}</strong></p>
+    </div>
+
+    <div class="impressum-section">
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p>Jessica Huang</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+    color: var(--color-text);
+  }
+
+  .impressum-section {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .impressum-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  address {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-style: normal;
+  }
+
+  a {
+    color: var(--color-ochre);
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: var(--color-terracotta);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

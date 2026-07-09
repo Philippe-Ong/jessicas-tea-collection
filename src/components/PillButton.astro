@@ -1,0 +1,51 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'primary' | 'ghost';
+}
+
+const { href, label, variant = 'primary' } = Astro.props;
+const className = `pill-button pill-button--${variant}`;
+---
+<a href={href} class={className}>{label}</a>
+
+<style>
+  .pill-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 28px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    border: 2px solid transparent;
+  }
+
+  .pill-button--primary {
+    background: var(--color-sage);
+    color: var(--color-white);
+    border-color: var(--color-sage);
+  }
+
+  .pill-button--primary:hover {
+    background: var(--color-terracotta);
+    border-color: var(--color-terracotta);
+  }
+
+  .pill-button--ghost {
+    background: transparent;
+    color: var(--color-sage);
+    border-color: var(--color-sage);
+  }
+
+  .pill-button--ghost:hover {
+    background: var(--color-sage);
+    color: var(--color-white);
+  }
+</style>

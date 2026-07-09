@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jessicasteacollection.ch/sitemap-index.xml

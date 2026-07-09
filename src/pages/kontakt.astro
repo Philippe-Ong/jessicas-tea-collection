@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PillButton from '../components/PillButton.astro';
+---
+
+<BaseLayout
+  title="Kontakt – Jessica's Tea Collection"
+  description="Kontaktieren Sie Jessica's Tea Collection – E-Mail, Telefon, WhatsApp oder Abholung in Luzern."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Kontakt' },
+      ]}
+    />
+
+    <h1>Kontakt</h1>
+
+    <div class="kontakt-grid">
+      <!-- Left column: info -->
+      <div class="kontakt-info">
+        <p class="brand-name">Jessica's Tea Collection</p>
+        <p class="intro-text">Haben Sie Fragen zu unseren Tees oder zu Ihrer Bestellung? Ich freue mich über Ihre Nachricht.</p>
+
+        <!-- E-Mail -->
+        <div class="kontakt-block">
+          <h2>E-Mail</h2>
+          <p><a href="mailto:info@jessicasteacollection.ch" class="contact-link">info@jessicasteacollection.ch</a></p>
+        </div>
+
+        <!-- Telefon / WhatsApp -->
+        <div class="kontakt-block">
+          <h2>Telefon / WhatsApp</h2>
+          <p><a href="tel:+41787164303" class="contact-link">078 716 43 03</a></p>
+          <p class="detail-text">Falls ich Ihren Anruf nicht direkt entgegennehmen kann, senden Sie mir bitte kurz eine WhatsApp-Nachricht, wenn Sie einen Rückruf wünschen. Ich melde mich dann so bald wie möglich bei Ihnen.</p>
+          <a href="https://wa.me/41787164303" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/>
+            </svg>
+            WhatsApp-Nachricht senden
+          </a>
+        </div>
+
+        <!-- Praxis / Abholung -->
+        <div class="kontakt-block">
+          <h2>Praxis / Abholung</h2>
+          <address class="address-block">
+            TCM Jessica Huang (Löwencenter)<br />
+            Zürichstrasse 7<br />
+            6004 Luzern<br />
+            5. Stock
+          </address>
+        </div>
+      </div>
+
+      <!-- Right column: form + map -->
+      <div class="kontakt-form-col">
+        <!-- Contact Form -->
+        <div class="kontakt-block">
+          <h2>Nachricht senden</h2>
+          <form class="contact-form" action="mailto:info@jessicasteacollection.ch" method="post" enctype="text/plain">
+            <div class="form-field">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" required aria-label="Ihr Name" placeholder="Ihr Name" />
+            </div>
+            <div class="form-field">
+              <label for="contact-email">E-Mail</label>
+              <input type="email" id="contact-email" name="email" required aria-label="Ihre E-Mail-Adresse" placeholder="Ihre E-Mail-Adresse" />
+            </div>
+            <div class="form-field">
+              <label for="contact-message">Nachricht</label>
+              <textarea id="contact-message" name="message" rows="6" required aria-label="Ihre Nachricht" placeholder="Ihre Nachricht"></textarea>
+            </div>
+            <!-- Simple math captcha -->
+            <div class="form-field">
+              <label for="contact-captcha">Sicherheitsfrage: 3 + 4 = ?</label>
+              <input type="number" id="contact-captcha" name="captcha" required aria-label="Sicherheitsfrage: 3 + 4 = ?" placeholder="Ergebnis" min="0" max="20" />
+            </div>
+            <!-- Honeypot (invisible to humans) -->
+            <div class="form-field honeypot" aria-hidden="true">
+              <label for="contact-website">Website</label>
+              <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <button type="submit" class="submit-btn">Nachricht senden</button>
+          </form>
+        </div>
+
+        <!-- OpenStreetMap -->
+        <div class="kontakt-block map-block">
+          <h2>Standort</h2>
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=8.3070%2C47.0480%2C8.3120%2C47.0520&layer=mapnik&marker=47.0500%2C8.3095"
+            width="100%"
+            height="400"
+            style="border:0;"
+            loading="lazy"
+            title="Karte – Zürichstrasse 7, 6004 Luzern"
+          ></iframe>
+          <p class="map-link">
+            <a href="https://www.openstreetmap.org/?mlat=47.0500&mlon=8.3095&zoom=16&layers=M" target="_blank" rel="noopener noreferrer">
+              Grössere Karte ansehen
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+    color: var(--color-text);
+  }
+
+  .kontakt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  .kontakt-info {
+    max-width: 500px;
+  }
+
+  .brand-name {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-terracotta);
+    margin-bottom: var(--space-2);
+  }
+
+  .intro-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+  }
+
+  .kontakt-block {
+    margin-bottom: var(--space-6);
+  }
+
+  .kontakt-block h2 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--color-text);
+  }
+
+  .kontakt-block p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-link {
+    color: var(--color-ochre);
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+
+  .contact-link:hover {
+    color: var(--color-terracotta);
+  }
+
+  .detail-text {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #25D366;
+    color: white;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    margin-top: var(--space-2);
+    min-height: 44px;
+  }
+
+  .whatsapp-btn:hover {
+    opacity: 0.85;
+  }
+
+  .address-block {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-style: normal;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+  }
+
+  /* Form styles */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .form-field label {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .form-field input,
+  .form-field textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text);
+    background: var(--color-white);
+    transition: border-color 0.2s;
+    min-height: 44px;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--color-sage);
+    box-shadow: 0 0 0 2px rgba(139, 158, 107, 0.2);
+  }
+
+  .form-field textarea {
+    resize: vertical;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .submit-btn {
+    padding: 14px 32px;
+    background: var(--color-sage);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 44px;
+    align-self: flex-start;
+  }
+
+  .submit-btn:hover {
+    background: var(--color-terracotta);
+  }
+
+  .map-block iframe {
+    border-radius: var(--radius-card);
+  }
+
+  .map-link {
+    margin-top: var(--space-2);
+  }
+
+  .map-link a {
+    color: var(--color-ochre);
+    text-decoration: underline;
+    font-size: 0.9rem;
+  }
+
+  .map-link a:hover {
+    color: var(--color-terracotta);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .kontakt-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .kontakt-info {
+      max-width: 100%;
+    }
+  }
+</style>

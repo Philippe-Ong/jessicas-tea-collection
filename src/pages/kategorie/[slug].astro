@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { categories } from '../../data/categories';
+import { getProductsByCategory } from '../../data/products';
+import type { Category } from '../../data/categories';
+import type { Product } from '../../data/products';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({
+    params: { slug: c.slug },
+    props: { category: c, products: getProductsByCategory(c.slug) },
+  }));
+}
+
+interface Props {
+  category: Category;
+  products: Product[];
+}
+
+const { category, products } = Astro.props;
+---
+
+<BaseLayout
+  title={`${category.name} – Jessica's Tea Collection`}
+  description={category.description}
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: category.name },
+      ]}
+    />
+
+    <h1 class="page-title">{category.name}</h1>
+    <p class="page-desc">{category.description}</p>
+
+    {products.length > 0 ? (
+      <div class="products-grid">
+        {products.map((p) => <ProductCard product={p} />)}
+      </div>
+    ) : (
+      <p class="section-text">Keine Produkte in dieser Kategorie.</p>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-desc {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: var(--space-7);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

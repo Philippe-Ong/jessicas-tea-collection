@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="Über mich – Jessica's Tea Collection"
+  description="Jessica Huang, TCM-Therapeutin in Luzern – zwischen zwei Kulturen, zwischen alter Heilkunst und modernem Alltag."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Über mich' },
+      ]}
+    />
+
+    <div class="about-grid">
+      <div class="photo-placeholder">
+        <span class="photo-label">Foto von Jessica</span>
+      </div>
+      <div class="about-text">
+        <h1>Über mich</h1>
+        <p>Ich bin Jessica Huang, TCM-Therapeutin mit eigener Praxis in Luzern.</p>
+        <p>Ich lebe und arbeite zwischen zwei Kulturen – der westlichen und der chinesischen – und genau diese Verbindung prägt meine Arbeit und meine Haltung.</p>
+        <p>Die Traditionelle Chinesische Medizin stammt aus Asien, doch ihre Weisheit ist universell. Sie betrachtet den Menschen nicht nach Herkunft, sondern nach Konstitution, Lebensweise, Klima, Emotionen und innerem Gleichgewicht. Deshalb ist TCM nicht nur für Chinesinnen und Chinesen, sondern für Menschen auf der ganzen Welt geeignet – für jede Kultur, jedes Alter und jede Lebenssituation.</p>
+        <p>Tee und Kräuter begleiten die chinesische Kultur seit Jahrtausenden. Wo immer Menschen mit chinesischem Hintergrund leben, bringen sie auch ihre Teekultur und ihr Wissen über Heilpflanzen mit. Diese Kräutertees sind heute weltweit bekannt und geschätzt – als tägliche Lebenspflege, als Genuss und als sanfte Unterstützung für Körper und Geist.</p>
+        <p>In meiner therapeutischen Arbeit erlebe ich täglich, wie wohltuend diese einfachen, natürlichen Mittel wirken können. Eine Tasse Tee ist mehr als ein Getränk: Sie ist Wärme, Ruhe, Regulation und ein Moment der Verbindung mit sich selbst.</p>
+        <p>Mit Jessica's Tea Collection möchte ich diese Erfahrung weitergeben – als Brücke zwischen Ost und West, zwischen alter Heilkunst und modernem Alltag. Meine Tees sind für alle Menschen gedacht, die ihre Gesundheit achtsam unterstützen möchten, unabhängig von Kultur oder Herkunft.</p>
+        <p>TCM ist für mich keine fremde, exotische Medizin, sondern eine zeitlose, menschliche Weisheit. Und Tee ist ihr sanftester, zugänglichster Ausdruck – TCM zum Trinken.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  .photo-placeholder {
+    background: var(--color-sand);
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .photo-label {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+
+  .about-text {
+    max-width: 800px;
+  }
+
+  .about-text h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+    color: var(--color-text);
+  }
+
+  .about-text p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .about-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .photo-placeholder {
+      min-height: 250px;
+      order: -1;
+    }
+
+    .about-text h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="AGB – Jessica's Tea Collection"
+  description="Allgemeine Geschäftsbedingungen von Jessica's Tea Collection."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'AGB' },
+      ]}
+    />
+
+    <h1>AGB – Allgemeine Geschäftsbedingungen</h1>
+
+    <p class="intro">Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Bestellungen, die über den Online-Shop von Jessica's Tea Collection getätigt werden.</p>
+
+    <h2 id="bestellung">Bestellung</h2>
+    <p>Mit dem Absenden einer Bestellung gibt der Kunde ein verbindliches Angebot zum Kauf der im Warenkorb enthaltenen Produkte ab.</p>
+
+    <h2 id="bezahlung">Bezahlung</h2>
+    <p>Die Bezahlung erfolgt über die im Online-Shop angebotenen Zahlungsmethoden: <strong>TWINT</strong>, <strong>Kreditkarte</strong> (Visa/Mastercard) und <strong>Kauf auf Rechnung</strong> (Zahlung nach Erhalt der Ware).</p>
+
+    <h2 id="lieferung">Lieferung</h2>
+    <p>Die Lieferung erfolgt innerhalb der Schweiz über die Schweizerische Post.</p>
+    <p>Die Bestellungen werden in der Regel einmal pro Woche, jeweils am Mittwoch, versendet.</p>
+    <p>Die Lieferzeit beträgt nach Versendung in der Regel 3–7 Werktage.</p>
+
+    <h2 id="widerrufsrecht">Widerrufsrecht</h2>
+    <p>Da es sich bei unseren Produkten um Lebensmittel handelt, besteht gemäss den gesetzlichen Bestimmungen kein Widerrufsrecht. Ausgenommen hiervon sind falsch gelieferte oder beim Transport beschädigte Produkte (siehe Seite «Rückgabe &amp; Rückerstattung»).</p>
+
+    <h2 id="haftung">Haftung</h2>
+    <p>Unsere Tees sind Lebensmittel und dienen dem Genuss sowie der traditionellen Teekultur. Sie ersetzen keine medizinische Beratung, Diagnose oder Behandlung.</p>
+    <p>Bei bekannten Allergien, Unverträglichkeiten, während der Schwangerschaft, bei der Einnahme von Medikamenten oder bei gesundheitlichen Beschwerden konsultieren Sie bitte eine qualifizierte medizinische Fachperson.</p>
+    <p>Die Tees können individuelle Reaktionen auslösen. Jessica's Tea Collection übernimmt keine Haftung für individuelle Unverträglichkeiten oder Folgen unsachgemässer Anwendung.</p>
+
+    <h2 id="urheberrecht">Urheberrecht</h2>
+    <p>Alle Inhalte dieser Website (Texte, Fotos, Logo und Design) sind urheberrechtlich geschützt und dürfen ohne ausdrückliche schriftliche Genehmigung von Jessica Huang nicht verwendet oder reproduziert werden.</p>
+
+    <h2 id="recht">Anwendbares Recht und Gerichtsstand</h2>
+    <p>Es gilt ausschliesslich Schweizer Recht. Ausschliesslicher Gerichtsstand für alle Streitigkeiten ist Luzern, Schweiz.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+  }
+
+  .intro {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+    padding: var(--space-4);
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+</style>

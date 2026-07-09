@@ -1,0 +1,57 @@
+---
+import type { Category } from '../data/categories';
+
+interface Props {
+  category: Category;
+  productCount: number;
+}
+
+const { category, productCount } = Astro.props;
+---
+<a href={`/kategorie/${category.slug}`} class="category-block">
+  <span class="category-block-eyebrow eyebrow">{productCount} Produkte</span>
+  <h3 class="category-block-title">{category.name}</h3>
+  <p class="category-block-desc">{category.description}</p>
+</a>
+
+<style>
+  .category-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    border-left: 4px solid var(--color-terracotta);
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .category-block:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  .category-block-eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-ochre);
+    font-weight: 500;
+  }
+
+  .category-block-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .category-block-desc {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    line-height: 1.5;
+  }
+</style>

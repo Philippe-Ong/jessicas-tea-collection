@@ -1,0 +1,57 @@
+---
+import type { Empfindung } from '../data/empfindungen';
+
+interface Props {
+  empfindung: Empfindung;
+}
+
+const { empfindung } = Astro.props;
+const previewWords = empfindung.beobachtungen.split(/[;\n]/).slice(0, 3).join('; ');
+---
+<a href={`/finde-deinen-tee/${empfindung.slug}`} class="empfindung-block">
+  <h3 class="empfindung-block-title">{empfindung.title}</h3>
+  <p class="empfindung-block-preview">{previewWords}</p>
+  <span class="empfindung-block-cta">Tees entdecken →</span>
+</a>
+
+<style>
+  .empfindung-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    border-left: 4px solid var(--color-sage);
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .empfindung-block:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  .empfindung-block-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .empfindung-block-preview {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    line-height: 1.5;
+  }
+
+  .empfindung-block-cta {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-sage);
+    margin-top: auto;
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="Bestellung & Versand – Jessica's Tea Collection"
+  description="Informationen zu Bestellung, Zahlungsmethoden, Versandkosten und Abholung bei Jessica's Tea Collection."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Bestellung & Versand' },
+      ]}
+    />
+
+    <h1>Bestellung &amp; Versand</h1>
+
+    <h2 id="bestellung">Bestellung</h2>
+    <p>Nach Abschluss der Bestellung erhält der Kunde eine automatische Bestellbestätigung per E-Mail.</p>
+    <p>Mit dem Absenden der Bestellung gibt der Kunde ein verbindliches Angebot zum Kauf der im Warenkorb enthaltenen Produkte ab.</p>
+    <p>Bei Fragen zu einer Bestellung können Sie mich jederzeit gerne kontaktieren.</p>
+
+    <h2 id="zahlungsmethoden">Zahlungsmethoden</h2>
+    <p>TWINT, Kreditkarte (Visa/Mastercard) und Kauf auf Rechnung (Zahlung nach Erhalt der Ware).</p>
+
+    <h2 id="versand">Versand</h2>
+    <p>Der Versand erfolgt innerhalb der Schweiz mit der Schweizerische Post.</p>
+
+    <div class="shipping-highlight">
+      <h2 id="versandkosten">Versandkosten</h2>
+      <ul>
+        <li>Pauschal CHF 9 pro Bestellung innerhalb der Schweiz.</li>
+        <li>Ab einem Bestellwert von CHF 80 ist der Versand kostenlos.</li>
+        <li>5 % Rabatt ab CHF 100 Bestellwert.</li>
+      </ul>
+    </div>
+
+    <h2 id="versandablauf">Versandablauf</h2>
+    <p>Alle Bestellungen werden sorgfältig vorbereitet und in der Regel einmal pro Woche, jeweils am Mittwoch, versendet.</p>
+    <p>Die Tees werden mit grosser Sorgfalt verpackt, damit Aroma, Frische und Qualität bestmöglich erhalten bleiben.</p>
+    <p>Da jede Bestellung persönlich vorbereitet wird, kann die Lieferzeit je nach Bestellzeitpunkt variieren.</p>
+
+    <h2 id="dringende-bestellungen">Dringende Bestellungen</h2>
+    <p>Wenn Sie eine Bestellung schneller benötigen, kontaktieren Sie mich bitte direkt. Ein schnellerer Versand kann nach Möglichkeit individuell vereinbart werden.</p>
+
+    <h2 id="abholung">Abholung vor Ort</h2>
+    <p>Eine Abholung ist nach Vereinbarung in meiner Praxis möglich:</p>
+    <address class="address-block">
+      TCM Jessica Huang (Löwencenter)<br />
+      Zürichstrasse 7, 6004 Luzern, 5. Stock
+    </address>
+    <p>Bei Abholung vor Ort entfallen die Versandkosten.</p>
+    <p>Bitte kontaktieren Sie mich vorab, um einen Termin für die Abholung zu vereinbaren.</p>
+
+    <p class="closing-text">Vielen Dank für Ihr Vertrauen und viel Freude mit den Tees von Jessica's Tea Collection.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+    color: var(--color-text);
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .shipping-highlight {
+    background: var(--color-sand);
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
+    margin-top: var(--space-7);
+    border-left: 4px solid var(--color-terracotta);
+  }
+
+  .shipping-highlight h2 {
+    margin-top: 0;
+  }
+
+  .shipping-highlight ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .shipping-highlight li {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    padding: var(--space-1) 0;
+    position: relative;
+    padding-left: var(--space-5);
+  }
+
+  .shipping-highlight li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-terracotta);
+    font-weight: bold;
+  }
+
+  .address-block {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-style: normal;
+    margin-bottom: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+  }
+
+  .closing-text {
+    margin-top: var(--space-7);
+    font-style: italic;
+    color: var(--color-text-light);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+</style>

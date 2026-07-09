@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="Allergie-Hinweis – Jessica's Tea Collection"
+  description="Allergie-Hinweis für Tees von Jessica's Tea Collection."
+>
+  <div class="container page-container">
+    <Breadcrumb
+      items={[
+        { label: 'Startseite', href: '/' },
+        { label: 'Allergie-Hinweis' },
+      ]}
+    />
+
+    <h1>Allergie-Hinweis</h1>
+
+    <p>Bitte beachten Sie die vollständige <a href="/finde-deinen-tee" class="product-link">Zutatenliste auf der jeweiligen Produktseite</a>.</p>
+    <p>Bei bekannten Allergien oder Unverträglichkeiten empfehle ich, die Zutaten vor dem Verzehr sorgfältig zu prüfen.</p>
+    <p>Unsere Tees dienen der Unterstützung im Alltag und ersetzen keine individuelle Beratung durch eine Fachperson.</p>
+    <p>Bei allgemeinen Fragen können Sie sich gerne per E-Mail bei mir melden. Für eine individuelle Beratung empfehle ich eine persönliche Behandlung.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+    color: var(--color-text);
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .product-link {
+    color: var(--color-ochre);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .product-link:hover {
+    color: var(--color-terracotta);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
