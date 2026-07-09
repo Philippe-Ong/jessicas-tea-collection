@@ -41,6 +41,8 @@ const { title, description, image, type = 'website' } = Astro.props;
         const FLAT_RATE = 9;
         const DISCOUNT_FROM = 100;
         const DISCOUNT_PERCENT = 5;
+        const ORDER_EMAIL = 'info@jessicasteacollection.ch';
+        const ORDER_WHATSAPP = '41787164303';
 
         // ── Cart state ──
         function getCart() {
@@ -216,12 +218,61 @@ const { title, description, image, type = 'website' } = Astro.props;
           if (discountEl) discountEl.textContent = discount > 0 ? '− CHF ' + discount.toFixed(2) : 'CHF 0.00';
           if (totalEl) totalEl.textContent = 'CHF ' + grandTotal.toFixed(2);
           if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+
+          // Checkout note: hide when cart is empty, keep links fresh otherwise
+          var note = document.getElementById('cart-checkout-note');
+          if (note) {
+            if (cart.length === 0) {
+              note.hidden = true;
+            } else if (!note.hidden) {
+              updateOrderLinks();
+            }
+          }
+        }
+
+        function updateOrderLinks() {
+          var message = buildOrderMessage();
+          var emailLink = document.getElementById('cart-order-email');
+          var waLink = document.getElementById('cart-order-whatsapp');
+          if (emailLink) {
+            emailLink.href = 'mailto:' + ORDER_EMAIL +
+              '?subject=' + encodeURIComponent("Bestellung – Jessica's Tea Collection") +
+              '&body=' + encodeURIComponent(message);
+          }
+          if (waLink) {
+            waLink.href = 'https://wa.me/' + ORDER_WHATSAPP + '?text=' + encodeURIComponent(message);
+          }
         }
 
         function escapeHtml(str) {
           var div = document.createElement('div');
           div.appendChild(document.createTextNode(str));
           return div.innerHTML;
+        }
+
+        function buildOrderMessage() {
+          var cart = getCart();
+          var total = getCartTotal(cart);
+          var shipping = getShipping(total);
+          var discount = getDiscount(total);
+          var lines = ['Guten Tag', '', 'Ich möchte gerne folgende Tees bestellen:', ''];
+          for (var i = 0; i < cart.length; i++) {
+            var item = cart[i];
+            lines.push('- ' + item.quantity + '× ' + item.nameDe + ' (' + item.nameCn + ') – CHF ' + (item.price * item.quantity).toFixed(2));
+          }
+          lines.push('');
+          lines.push('Zwischensumme: CHF ' + total.toFixed(2));
+          if (discount > 0) {
+            lines.push('Rabatt (' + DISCOUNT_PERCENT + ' %): − CHF ' + discount.toFixed(2));
+          }
+          lines.push('Versand: CHF ' + shipping.toFixed(2));
+          lines.push('Total: CHF ' + getGrandTotal(cart).toFixed(2));
+          lines.push('');
+          lines.push('Name:');
+          lines.push('Lieferadresse:');
+          lines.push('');
+          lines.push('Freundliche Grüsse');
+          return lines.join('\n');
         }
 
         // ── Initialisation ──
@@ -232,17 +283,39 @@ const { title, description, image, type = 'website' } = Astro.props;
           var closeBtn = document.getElementById('cart-close');
           var overlay = document.getElementById('cart-overlay');
 
+          function openDrawer() {
+            drawer.classList.add('open');
+            drawer.setAttribute('aria-hidden', 'false');
+          }
+
+          function closeDrawer() {
+            drawer.classList.remove('open');
+            drawer.setAttribute('aria-hidden', 'true');
+          }
+
           if (toggle && drawer) {
             toggle.addEventListener('click', function () {
-              drawer.classList.add('open');
+              openDrawer();
               renderCart();
             });
           }
           if (closeBtn && drawer) {
-            closeBtn.addEventListener('click', function () { drawer.classList.remove('open'); });
+            closeBtn.addEventListener('click', closeDrawer);
           }
           if (overlay && drawer) {
-            overlay.addEventListener('click', function () { drawer.classList.remove('open'); });
+            overlay.addEventListener('click', closeDrawer);
+          }
+
+          // Checkout: prepare order links and reveal the note
+          var checkoutBtn = document.getElementById('cart-checkout-btn');
+          var checkoutNote = document.getElementById('cart-checkout-note');
+          if (checkoutBtn && checkoutNote) {
+            checkoutBtn.addEventListener('click', function () {
+              if (getCart().length === 0) return;
+              updateOrderLinks();
+              checkoutNote.hidden = false;
+              checkoutNote.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
           }
 
           // Add to cart buttons
@@ -260,7 +333,7 @@ const { title, description, image, type = 'website' } = Astro.props;
             if (isNaN(quantity) || quantity < 1) quantity = 1;
             addToCart(slug, name, cn, price, quantity);
             // Open drawer
-            if (drawer) drawer.classList.add('open');
+            if (drawer) openDrawer();
           });
 
           // Initial render

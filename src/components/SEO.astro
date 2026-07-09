@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import { url as withBase } from '../utils/url';
 
 interface Props {
   title: string;
@@ -10,7 +11,8 @@ interface Props {
 
 const { title, description, image, type = 'website' } = Astro.props;
 const fullTitle = `${title} | ${site.name}`;
-const defaultImage = image || '/images/teas/gruen_tee_im_glas.png';
+const imagePath = withBase((image || '/images/teas/gruen_tee_im_glas.png').replace(/^\//, ''));
+const defaultImage = Astro.site ? new URL(imagePath, Astro.site).href : imagePath;
 const url = `https://${site.domain}`;
 ---
 <title>{fullTitle}</title>

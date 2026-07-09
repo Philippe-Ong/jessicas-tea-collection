@@ -43,6 +43,14 @@
       <button id="cart-checkout-btn" class="cart-checkout-btn" disabled>
         Zur Kasse
       </button>
+
+      <div id="cart-checkout-note" class="cart-checkout-note" hidden>
+        <p>Der Online-Checkout ist noch nicht verfügbar. Senden Sie uns Ihre Bestellung ganz einfach per E-Mail oder WhatsApp – Ihre Auswahl ist bereits vorbereitet:</p>
+        <div class="cart-order-actions">
+          <a id="cart-order-email" class="cart-order-link cart-order-link--email" href="#">Per E-Mail bestellen</a>
+          <a id="cart-order-whatsapp" class="cart-order-link cart-order-link--whatsapp" href="#" target="_blank" rel="noopener noreferrer">Per WhatsApp bestellen</a>
+        </div>
+      </div>
     </div>
   </div>
 </aside>
@@ -118,6 +126,135 @@
     padding: var(--space-7) 0;
   }
 
+  .cart-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'info remove'
+      'price price'
+      'qty total';
+    row-gap: var(--space-2);
+    column-gap: var(--space-3);
+    align-items: center;
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cart-item:first-child {
+    padding-top: 0;
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .cart-item-info {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .cart-item-name {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .cart-item-cn {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+  }
+
+  .cart-item-price {
+    grid-area: price;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+  }
+
+  .cart-item-qty {
+    grid-area: qty;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    background: var(--color-white);
+  }
+
+  .cart-qty-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: var(--color-cream);
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .cart-qty-btn:hover {
+    background: var(--color-sand);
+  }
+
+  .cart-qty-input {
+    width: 40px;
+    height: 28px;
+    border: none;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text);
+    background: var(--color-white);
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  .cart-qty-input::-webkit-inner-spin-button,
+  .cart-qty-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .cart-item-total {
+    grid-area: total;
+    justify-self: end;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .cart-item-remove {
+    grid-area: remove;
+    justify-self: end;
+    align-self: start;
+    background: none;
+    border: none;
+    padding: 2px 4px;
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .cart-item-remove:hover {
+    color: var(--color-terracotta);
+  }
+
   .cart-progress {
     font-family: var(--font-sans);
     font-size: 0.8rem;
@@ -173,6 +310,56 @@
 
   .cart-checkout-btn:not(:disabled):hover {
     background: var(--color-terracotta-banner);
+  }
+
+  .cart-checkout-note {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    background: var(--color-cream);
+    border-radius: var(--radius-card);
+    padding: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .cart-checkout-note[hidden] {
+    display: none;
+  }
+
+  .cart-order-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .cart-order-link {
+    flex: 1;
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--color-white);
+    transition: opacity 0.2s;
+  }
+
+  .cart-order-link:hover {
+    opacity: 0.85;
+  }
+
+  .cart-order-link--email {
+    background: var(--color-olive);
+  }
+
+  .cart-order-link--whatsapp {
+    background: #25D366;
   }
 
   .cart-overlay {

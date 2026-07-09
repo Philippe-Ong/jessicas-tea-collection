@@ -25,7 +25,11 @@ interface Props {
 const { product, similar } = Astro.props;
 const categoryName = getCategoryName(product.category);
 const allImages = product.images && product.images.length > 0 ? product.images : product.image ? [product.image] : [];
+const galleryImages = allImages.map((img) => url(img.replace(/^\//, '')));
 const displayImage = allImages[0];
+const ogImage = displayImage
+  ? new URL(url(displayImage.replace(/^\//, '')), Astro.site ?? 'https://philippe-ong.github.io').href
+  : undefined;
 
 // Accessories (excluding itself)
 import { getAccessoryProducts } from '../../data/products';
@@ -56,15 +60,15 @@ const matchingEmpfindungen = empfindungen.filter((e) =>
     <div class="product-layout">
       <!-- Left: Gallery -->
       <div class="product-gallery">
-        {allImages.length > 0 ? (
+        {galleryImages.length > 0 ? (
           <>
             <div class="gallery-main">
-              <img src={allImages[0]} alt={product.nameDe} />
+              <img src={galleryImages[0]} alt={product.nameDe} />
             </div>
-            {allImages.length > 1 && (
+            {galleryImages.length > 1 && (
               <div class="gallery-thumbnails">
-                {allImages.map((img) => (
-                  <button class="gallery-thumb" aria-label="Bildvorschau">
+                {galleryImages.map((img, i) => (
+                  <button class={`gallery-thumb${i === 0 ? ' active' : ''}`} aria-label={`Bild ${i + 1} anzeigen`}>
                     <img src={img} alt="" />
                   </button>
                 ))}
@@ -197,7 +201,7 @@ const matchingEmpfindungen = empfindungen.filter((e) =>
   "@type": "Product",
   "name": product.nameDe,
   "description": product.shortDesc,
-  "image": displayImage ? [displayImage] : undefined,
+  "image": ogImage ? [ogImage] : undefined,
   "offers": {
     "@type": "Offer",
     "price": product.price.toFixed(2),
@@ -205,6 +209,19 @@ const matchingEmpfindungen = empfindungen.filter((e) =>
     "availability": "https://schema.org/InStock"
   }
 })} />
+
+<script>
+  const mainImg = document.querySelector<HTMLImageElement>('.gallery-main img');
+  const thumbs = document.querySelectorAll<HTMLButtonElement>('.gallery-thumb');
+  thumbs.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const thumbImg = btn.querySelector('img');
+      if (mainImg && thumbImg) mainImg.src = thumbImg.src;
+      thumbs.forEach((t) => t.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
 
 <style>
   .page-container {
@@ -282,7 +299,8 @@ const matchingEmpfindungen = empfindungen.filter((e) =>
     transition: border-color 0.2s;
   }
 
-  .gallery-thumb:hover {
+  .gallery-thumb:hover,
+  .gallery-thumb.active {
     border-color: var(--color-terracotta);
   }
 

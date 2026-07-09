@@ -21,9 +21,26 @@ const navLinks = [
     <button class="cart-toggle" aria-label="Warenkorb öffnen" id="cart-toggle">
       🛒 <span class="cart-count" id="cart-count">0</span>
     </button>
-    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-nav" id="menu-toggle">☰</button>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Hauptnavigation (mobil)">
+    {navLinks.map(link => <a href={link.href}>{link.label}</a>)}
+  </nav>
 </header>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggle = document.getElementById('menu-toggle');
+    var nav = document.getElementById('mobile-nav');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.setAttribute('aria-label', isOpen ? 'Menü schliessen' : 'Menü öffnen');
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+  });
+</script>
 
 <style is:global>
   .site-header {
@@ -127,6 +144,34 @@ const navLinks = [
     color: var(--color-text);
   }
 
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    padding: var(--space-2) 0 var(--space-4);
+    z-index: 99;
+  }
+
+  .mobile-nav a {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text);
+    padding: var(--space-3) var(--space-5);
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .mobile-nav a:hover {
+    color: var(--color-terracotta);
+    background: rgba(0, 0, 0, 0.03);
+  }
+
   @media (max-width: 768px) {
     .main-nav {
       display: none;
@@ -138,6 +183,10 @@ const navLinks = [
 
     .menu-toggle {
       display: block;
+    }
+
+    .mobile-nav.open {
+      display: flex;
     }
   }
 </style>
