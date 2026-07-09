@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PillButton from '../../components/PillButton.astro';
+import { url } from '../../utils/url';
 import { empfindungen } from '../../data/empfindungen';
 import { getProductBySlug } from '../../data/products';
 import type { Empfindung } from '../../data/empfindungen';
@@ -66,7 +67,7 @@ const matchingProducts = empfindung.passendeTees
 
     <!-- Back link -->
     <div class="back-link">
-      <PillButton href="/finde-deinen-tee" label="Zurück zur Übersicht" variant="ghost" />
+      <PillButton href={url('finde-deinen-tee')} label="Zurück zur Übersicht" variant="ghost" />
     </div>
   </div>
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import PillButton from '../components/PillButton.astro';
+import { url } from '../utils/url';
 ---
 
 <BaseLayout
@@ -161,7 +162,7 @@ import PillButton from '../components/PillButton.astro';
         </div>
       </div>
 
-      <p class="hinweis-text">Welche Tees traditionell zu Ihrem aktuellen Zustand passen können, finden Sie in der Übersicht «<a href="/finde-deinen-tee">Finde deinen Tee</a>».</p>
+      <p class="hinweis-text">Welche Tees traditionell zu Ihrem aktuellen Zustand passen können, finden Sie in der Übersicht «<a href={url('finde-deinen-tee')}>Finde deinen Tee</a>».</p>
     </section>
 
     <!-- Section 4 -->

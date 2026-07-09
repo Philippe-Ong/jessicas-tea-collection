@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CategoryBlock from '../components/CategoryBlock.astro';
 import PillButton from '../components/PillButton.astro';
+import { url } from '../utils/url';
 import { categories } from '../data/categories';
 import { getProductsByCategory } from '../data/products';
 ---
@@ -42,7 +43,7 @@ import { getProductsByCategory } from '../data/products';
         <span class="eyebrow">TCM-Orientierung</span>
         <h2 class="finde-title">Finde deinen Tee</h2>
         <p class="finde-text">Nicht sicher, welcher Tee zu Ihnen passt? Unsere TCM-Orientierung hilft Ihnen, den passenden Tee nach Ihren aktuellen Empfindungen und Bedürfnissen zu finden.</p>
-        <PillButton href="/finde-deinen-tee" label="Tees entdecken" />
+        <PillButton href={url('finde-deinen-tee')} label="Tees entdecken" />
       </div>
     </div>
   </section>

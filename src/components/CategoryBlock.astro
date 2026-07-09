@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import type { Category } from '../data/categories';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 
 const { category, productCount } = Astro.props;
 ---
-<a href={`/kategorie/${category.slug}`} class="category-block">
+<a href={url(`kategorie/${category.slug}`)} class="category-block">
   <span class="category-block-eyebrow eyebrow">{productCount} Produkte</span>
   <h3 class="category-block-title">{category.name}</h3>
   <p class="category-block-desc">{category.description}</p>

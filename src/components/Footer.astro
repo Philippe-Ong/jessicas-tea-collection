@@ -1,17 +1,18 @@
 ---
+import { url } from '../utils/url';
 import { site } from '../data/site';
 
 const year = new Date().getFullYear();
 
 const footerLinks = [
-  { label: 'Kontakt', href: '/kontakt' },
-  { label: 'Infokasten', href: '/infokasten' },
-  { label: 'Bestellung & Versand', href: '/bestellung-versand' },
-  { label: 'Rückgabe', href: '/rueckgabe' },
-  { label: 'AGB', href: '/agb' },
-  { label: 'Allergie-Hinweis', href: '/allergie-hinweis' },
-  { label: 'Datenschutz', href: '/datenschutz' },
-  { label: 'Impressum', href: '/impressum' },
+  { label: 'Kontakt', href: url('kontakt') },
+  { label: 'Infokasten', href: url('infokasten') },
+  { label: 'Bestellung & Versand', href: url('bestellung-versand') },
+  { label: 'Rückgabe', href: url('rueckgabe') },
+  { label: 'AGB', href: url('agb') },
+  { label: 'Allergie-Hinweis', href: url('allergie-hinweis') },
+  { label: 'Datenschutz', href: url('datenschutz') },
+  { label: 'Impressum', href: url('impressum') },
 ];
 ---
 <footer class="site-footer">

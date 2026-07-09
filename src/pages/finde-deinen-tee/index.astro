@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EmpfindungBlock from '../../components/EmpfindungBlock.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import { url } from '../../utils/url';
 import { empfindungen } from '../../data/empfindungen';
 ---
 
@@ -25,7 +26,7 @@ import { empfindungen } from '../../data/empfindungen';
       <h2 class="hinweis-title">Hinweis</h2>
       <p>Die folgenden Tee-Empfehlungen basieren auf den Prinzipien der Traditionellen Chinesischen Medizin (TCM) und dienen der Orientierung bei der Auswahl eines passenden Tees nach persönlichen Bedürfnissen und Empfindungen.</p>
       <p>Unsere Tees sind Lebensmittel und ersetzen keine schulmedizinische Diagnose, Behandlung oder Medikamente. Bei anhaltenden oder ernsthaften gesundheitlichen Beschwerden wenden Sie sich bitte an eine qualifizierte medizinische Fachperson oder an Ihren Arzt.</p>
-      <p>Weitere allgemeine Informationen zur Traditionellen Chinesischen Medizin, zu den Eigenschaften von Tees sowie zu Einzeltees und Mischtees finden Sie im <a href="/infokasten">Infokasten</a>.</p>
+      <p>Weitere allgemeine Informationen zur Traditionellen Chinesischen Medizin, zu den Eigenschaften von Tees sowie zu Einzeltees und Mischtees finden Sie im <a href={url('infokasten')}>Infokasten</a>.</p>
       <p>Detaillierte Beschreibungen zu den einzelnen Tees sind jeweils auf den Produktseiten im Shop aufgeführt.</p>
       <p>Die Tees können selbstverständlich auch unabhängig von dieser Orientierungshilfe nach persönlichem Geschmack ausgewählt und genossen werden. Die Einteilung „Finde deinen Tee" dient ausschließlich als Orientierung nach den Prinzipien der Traditionellen Chinesischen Medizin (TCM).</p>
     </div>
@@ -37,7 +38,7 @@ import { empfindungen } from '../../data/empfindungen';
 
     <!-- Footer note -->
     <p class="footer-note">
-      Wenn Sie mehr über die Hintergründe der Traditionellen Chinesischen Medizin erfahren möchten, können Sie weitere Informationen im <a href="/infokasten">TCM-Infokasten</a> nachlesen.
+      Wenn Sie mehr über die Hintergründe der Traditionellen Chinesischen Medizin erfahren möchten, können Sie weitere Informationen im <a href={url('infokasten')}>TCM-Infokasten</a> nachlesen.
     </p>
   </div>
 </BaseLayout>

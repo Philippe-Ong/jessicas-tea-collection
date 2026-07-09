@@ -1,15 +1,17 @@
 ---
+import { url } from '../utils/url';
+
 const navLinks = [
-  { label: 'Startseite', href: '/' },
-  { label: 'Finde deinen Tee', href: '/finde-deinen-tee' },
-  { label: 'Über mich', href: '/ueber-mich' },
-  { label: 'Infokasten', href: '/infokasten' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Startseite', href: url('') },
+  { label: 'Finde deinen Tee', href: url('finde-deinen-tee') },
+  { label: 'Über mich', href: url('ueber-mich') },
+  { label: 'Infokasten', href: url('infokasten') },
+  { label: 'Kontakt', href: url('kontakt') },
 ];
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="logo" aria-label="Jessica's Tea Collection Startseite">
+    <a href={url('')} class="logo" aria-label="Jessica's Tea Collection Startseite">
       <span class="logo-mark">茶</span>
       <span class="logo-text">Jessica's Tea Collection</span>
     </a>

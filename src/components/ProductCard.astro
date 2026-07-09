@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import type { Product } from '../data/products';
 import CategoryBanner from './CategoryBanner.astro';
 
@@ -8,12 +9,13 @@ interface Props {
 
 const { product } = Astro.props;
 const imageUrl = product.image || (product.images && product.images[0]);
+const prefixedImage = imageUrl ? url(imageUrl.replace(/^\//, '')) : undefined;
 ---
-<a href={`/produkt/${product.slug}`} class="product-card">
+<a href={url(`produkt/${product.slug}`)} class="product-card">
   <CategoryBanner energy={product.energy} />
   <div class="card-image">
-    {imageUrl ? (
-      <img src={imageUrl} alt={product.nameDe} loading="lazy" />
+    {prefixedImage ? (
+      <img src={prefixedImage} alt={product.nameDe} loading="lazy" />
     ) : (
       <div class="card-image-placeholder">
         <span class="card-watermark">{product.nameCn}</span>

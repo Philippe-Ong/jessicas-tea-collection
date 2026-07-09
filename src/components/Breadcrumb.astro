@@ -1,4 +1,6 @@
 ---
+import { url } from '../utils/url';
+
 interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -15,7 +17,7 @@ const { items } = Astro.props;
     {items.map((item, i) => (
       <li class="breadcrumb-item">
         {item.href ? (
-          <a href={item.href} class="breadcrumb-link">{item.label}</a>
+          <a href={url(item.href.replace(/^\//, ''))} class="breadcrumb-link">{item.label}</a>
         ) : (
           <span class="breadcrumb-current" aria-current="page">{item.label}</span>
         )}

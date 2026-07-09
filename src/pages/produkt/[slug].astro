@@ -4,6 +4,7 @@ import ProductCard from '../../components/ProductCard.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import CategoryBanner from '../../components/CategoryBanner.astro';
 import PillButton from '../../components/PillButton.astro';
+import { url } from '../../utils/url';
 import { products, getSimilarProducts } from '../../data/products';
 import { getCategoryName } from '../../data/categories';
 import { empfindungen } from '../../data/empfindungen';
@@ -121,7 +122,7 @@ const matchingEmpfindungen = empfindungen.filter((e) =>
             <h3 class="accessories-title">Zubehör</h3>
             <div class="accessories-list">
               {accessories.map((a) => (
-                <a href={`/produkt/${a.slug}`} class="accessory-link">
+                <a href={url(`produkt/${a.slug}`)} class="accessory-link">
                   {a.nameDe}
                 </a>
               ))}
@@ -156,7 +157,7 @@ const matchingEmpfindungen = empfindungen.filter((e) =>
         <h2 class="info-block-title">Zutaten / Allergie-Hinweis</h2>
         <p class="info-block-text">{product.zutaten}</p>
         <p class="allergie-hinweis">
-          Bitte beachten Sie die vollständige <a href="/allergie-hinweis">Zutatenliste auf der Allergie-Hinweis Seite</a>.
+          Bitte beachten Sie die vollständige <a href={url('allergie-hinweis')}>Zutatenliste auf der Allergie-Hinweis Seite</a>.
         </p>
       </section>
 
@@ -169,7 +170,7 @@ const matchingEmpfindungen = empfindungen.filter((e) =>
           </p>
           <div class="empfindung-links">
             {matchingEmpfindungen.map((e) => (
-              <a href={`/finde-deinen-tee/${e.slug}`} class="empfindung-link">
+              <a href={url(`finde-deinen-tee/${e.slug}`)} class="empfindung-link">
                 {e.title}
               </a>
             ))}

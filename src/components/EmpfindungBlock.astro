@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import type { Empfindung } from '../data/empfindungen';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 const { empfindung } = Astro.props;
 const previewWords = empfindung.beobachtungen.split(/[;\n]/).slice(0, 3).join('; ');
 ---
-<a href={`/finde-deinen-tee/${empfindung.slug}`} class="empfindung-block">
+<a href={url(`finde-deinen-tee/${empfindung.slug}`)} class="empfindung-block">
   <h3 class="empfindung-block-title">{empfindung.title}</h3>
   <p class="empfindung-block-preview">{previewWords}</p>
   <span class="empfindung-block-cta">Tees entdecken →</span>
